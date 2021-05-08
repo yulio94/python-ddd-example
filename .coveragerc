@@ -1,0 +1,12 @@
+[run]
+omit =
+    .idea/*
+    compose/*
+
+[report]
+omit =
+    .idea/*
+    compose/*
+
+show_missing = True
+

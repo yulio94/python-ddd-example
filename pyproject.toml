@@ -1,0 +1,48 @@
+[tool.poetry]
+name = "python-ddd-example"
+version = "0.1.0"
+description = ""
+authors = ["Julio Estrada <me@julioestrada.dev>"]
+packages = [
+    { include = "src" },
+    { include = "src/**/*.py" },
+    { include = "tests" },
+    { include = "tests/**/*.py" },
+]
+
+[tool.poetry.scripts]
+test-backoffice = "pytest /tests/apps/backoffice/ tests/contexts/bacKoffice/"
+test-uvcp = "pytest /tests/apps/uvcp/ tests/contexts/uvcp/"
+test = "poetry run test-backoffice && test-uvcp"
+lint = "pylint"
+dev-backoffice = "src.apps.backoffice.backend.start:entrypoint"
+dev-uvcp = "src.apps.uvcp.backend.start:entrypoint"
+#prod-backoffice = "gunicorn -k uvicorn.workers.UvicornWorker uvicorn src/apps/backoffice/backend/main:app -b :8001"
+#prod-uvcp = "gunicorn -k uvicorn.workers.UvicornWorker  uvicorn src/apps/uvcp/backend/main:app -b :8000"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+SQLAlchemy = "^1.4.12"
+fastapi = "^0.63.0"
+uvicorn = "^0.13.4"
+gunicorn = "^20.1.0"
+
+[tool.poetry.dev-dependencies]
+pytest = "^6.2.3"
+mypy = "^0.812"
+pre-commit = "^2.12.1"
+coverage = "^5.5"
+ipdb = "^0.13.7"
+pytest-cov = "^2.11.1"
+pytest-bdd = "^4.0.2"
+pylint = "^2.8.2"
+
+[tool.pylint]
+max_line_length = 120
+in-place = true
+recursive = true
+aggressive = 3
+
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"

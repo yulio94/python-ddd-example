@@ -1,0 +1,44 @@
+version: '3.8'
+
+x-app-service: &default-app
+  build:
+    context: .
+    dockerfile: ./compose/Dockerfile
+  command: ''
+  environment:
+    - INSTALL_DEV=true
+  depends_on:
+    - postgresql
+  volumes:
+    - .:/app:cached
+
+services:
+  backoffice-backend:
+    <<: *default-app
+    command: bash -c "poetry run dev-backoffice"
+    ports:
+      - 8000:8000
+
+  uvcp-backend:
+    <<: *default-app
+    command: bash -c "poetry run dev-uvcp"
+    ports:
+      - 8001:8001
+
+  postgresql:
+    image: postgres:13.2-alpine
+    volumes:
+      - postgresql_data:/var/lib/postgresql/data:delegated
+      - postgresql_backup:/backups:delegated
+    ports:
+      - 5432:5432
+
+  rabbitmq:
+    image: rabbitmq:3-management-alpine
+    ports:
+      - 5672:5672
+      - 5673:5673
+
+volumes:
+  postgresql_data:
+  postgresql_backup:
