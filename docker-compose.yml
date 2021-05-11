@@ -33,7 +33,7 @@ services:
     ports:
       - 5432:5432
     env_file:
-      - compose/db.env
+      - compose/env_variables/db.env
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
@@ -41,7 +41,7 @@ services:
       - 5672:5672
       - 5673:5673
     env_file:
-      - compose/rabbit.env
+      - compose/env_variables/rabbit.env
 
 volumes:
   postgresql_data:
