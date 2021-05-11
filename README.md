@@ -12,11 +12,15 @@
 * Clone this repository `https://github.com/yulio94/python-ddd-example`
 * Move to the root project folder: `cd python-ddd-example`
 
+### Environment configuration
+
+* Create env files in compose directory `cp db.env.example db.env && cp rabbit.env.example rabbit.env`
+
 ### Run project
 
 * Run `docker-compose up --build`
 * Go to your browser and type `http://localhost:8001` or `http://localhost:8000`
-9
+
 ## Special thanks to:
 
 [CodelyTv](https://codely.tv/)
