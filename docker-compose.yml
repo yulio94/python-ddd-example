@@ -32,12 +32,16 @@ services:
       - postgresql_backup:/backups:delegated
     ports:
       - 5432:5432
+    env_file:
+      - compose/env_variables/db.env
 
   rabbitmq:
     image: rabbitmq:3-management-alpine
     ports:
       - 5672:5672
       - 5673:5673
+    env_file:
+      - compose/env_variables/rabbit.env
 
 volumes:
   postgresql_data:
