@@ -14,7 +14,8 @@
 
 ### Environment configuration
 
-* Create env files in compose directory `cp db.env.example db.env && cp rabbit.env.example rabbit.env`
+* Go to env_variables directory `cd compose/env_variables`
+* Copy env files like this: `cp db.env.example db.env && cp rabbit.env.example rabbit.env`
 
 ### Run project
 
